@@ -1,0 +1,30 @@
+<!-- Favicon: the mascot's head alone. Three lettered blocks turn to mush at
+     16px, whereas the crocodile's big eyes and toothy snout still read. Same
+     shapes as the #crd-croc symbol in index.html, scaled up. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <rect width="48" height="48" rx="10" fill="#0B132B"/>
+  <g transform="translate(23.5 33.5) scale(1.32)">
+      <g stroke="#123f22" stroke-opacity=".4" stroke-width=".55" stroke-linejoin="round">
+        <rect x="-4" y="-2.4" width="19.5" height="6.4" rx="2.8" fill="#E3E98F"/>
+        <rect x="-15" y="-13.5" width="17" height="18" rx="6" fill="#52B052"/>
+        <rect x="-5" y="-9.4" width="20.6" height="7.4" rx="3.6" fill="#52B052"/>
+        <rect x="3.8" y="-10.6" width="2.6" height="1.5" rx=".6" fill="#52B052"/><rect x="7.4" y="-10.6" width="2.6" height="1.5" rx=".6" fill="#52B052"/>
+        <rect x="10.8" y="-11.4" width="4.8" height="3.2" rx="1.4" fill="#2E7D3E"/>
+        <rect x="-13.4" y="-7.5" width="11.4" height="10" rx="4" fill="#9BCD4C"/>
+        <path d="M-1-2.1l1.4 2 1.4-2zM2.4-2.1l1.4 2 1.4-2zM5.8-2.1l1.4 2 1.4-2zM9.2-2.1l1.4 2 1.4-2zM12.4-2.1l1.4 2 1.4-2z" fill="#FFFDF3" stroke="#B8AE8A" stroke-opacity="1" stroke-width=".3"/>
+        <circle cx="3" cy="-14.2" r="5" fill="#2E7D3E"/>
+        <circle cx="3.3" cy="-14.6" r="3.5" fill="#fff"/>
+        <circle cx="-6.2" cy="-12.6" r="6.9" fill="#52B052"/>
+        <circle cx="-5.9" cy="-13.2" r="4.9" fill="#fff"/>
+      </g>
+      <circle cx="12.4" cy="-9.9" r=".55" fill="#0F3019"/><circle cx="14.2" cy="-9.9" r=".55" fill="#0F3019"/>
+      <ellipse cx="-9.4" cy="-3.8" rx="2.2" ry="1.3" fill="#FF7F86" opacity=".6"/>
+      <path d="M-11.5-5.6Q-9.6-1.4-4-2" fill="none" stroke="#1D5A30" stroke-width=".8" stroke-linecap="round"/>
+      <circle cx="3.9" cy="-14.3" r="2" fill="#141414"/><circle cx="4.6" cy="-15.3" r=".7" fill="#fff"/>
+      <circle cx="-4.9" cy="-12.8" r="2.8" fill="#141414"/><circle cx="-4" cy="-14.2" r="1" fill="#fff"/><circle cx="-5.6" cy="-11.4" r=".45" fill="#fff"/>
+      <g fill="#4A3426">
+        <rect x="-10.4" y="-19.9" width="8" height="1.8" rx=".9" transform="rotate(-10 -6.4 -19)"/>
+        <rect x=".4" y="-19.6" width="5.6" height="1.5" rx=".75" transform="rotate(12 3.2 -18.9)"/>
+      </g>
+  </g>
+</svg>

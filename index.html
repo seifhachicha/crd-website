@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="meta.title">CRD, toy distribution in Tunisia</title>
+<meta name="description" data-i18n="meta.description" content="CRD represents and distributes Europe's leading toy brands across Tunisia. For brand owners entering the market, and for retailers stocking their shelves.">
+<meta name="theme-color" content="#0B132B">
+
+<meta property="og:type" content="website">
+<meta property="og:title" data-i18n="meta.title" content="CRD, toy distribution in Tunisia">
+<meta property="og:description" data-i18n="meta.description" content="CRD represents and distributes Europe's leading toy brands across Tunisia.">
+<meta property="og:image" content="assets/img/hero.jpg">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Tajawal carries the Arabic version. Its files are split by script, so a
+     browser only downloads them once Arabic text is actually shown. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Tajawal:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- Audience and language, decided here in the head so the page never shows
+     the wrong version, or a left-to-right layout about to flip to Arabic, for a
+     frame before main.js runs.
+     Audience: ?pour= in the link, then the visitor's last choice, then brands.
+     Elements marked data-for="brand" or "retail" are hidden by CSS when they
+     do not match.
+     Language: the visitor's last choice, then the browser's language, then
+     French for retailers and English for brand owners. -->
+<script>
+  (function () {
+    var html = document.documentElement;
+
+    var fromLink = { marques: "brand", brands: "brand", revendeurs: "retail", retailers: "retail" };
+    var a = fromLink[(new URLSearchParams(location.search).get("pour") || "").toLowerCase()];
+    if (!a) { try { a = localStorage.getItem("crd-audience"); } catch (e) { /* private mode */ } }
+    if (a !== "brand" && a !== "retail") a = "brand";
+    html.setAttribute("data-audience", a);
+
+    var langs = ["en", "fr", "ar"];
+    var l;
+    try { l = localStorage.getItem("crd-lang"); } catch (e) { /* private mode */ }
+    if (langs.indexOf(l) === -1) l = (navigator.language || "").slice(0, 2).toLowerCase();
+    if (langs.indexOf(l) === -1) l = a === "retail" ? "fr" : "en";
+    html.setAttribute("lang", l);
+    html.setAttribute("dir", l === "ar" ? "rtl" : "ltr");
+
+    // ?motion=on plays the animations even where the system asks for reduced
+    // motion, to preview them on machines that switch animations off.
+    if (new URLSearchParams(location.search).get("motion") === "on") html.classList.add("motion-on");
+  })();
+</script>
+</head>
+<body id="top">
+
+<!-- Icon sprite: referenced throughout via <use href="#i-name"> -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <!-- Logo parts. They are two symbols rather than one because a CSS
+         animation on a <symbol>'s contents does not reach the <use> instances
+         that render it — only the original, which is never drawn. The crocodile
+         has to be a real element inside each logo for the hop to play, so each
+         .brand-mark assembles these two itself.
+         Explicit fills throughout, so the icon stroke rules that style the
+         #i-* groups below never touch them. -->
+
+    <!-- The mascot's head on its own: the brick crocodile from the hero,
+         facing right. Drawn around (0,0), where the blocks' top edge sits,
+         with nothing above y=-21, so the hop's 21-unit duck hides it
+         completely: whatever references it positions that origin rather than
+         a corner. The favicon draws the same head. -->
+    <symbol id="crd-croc" viewBox="-16 -22 32 30">
+      <g stroke="#123f22" stroke-opacity=".4" stroke-width=".55" stroke-linejoin="round">
+        <rect x="-4" y="-2.4" width="19.5" height="6.4" rx="2.8" fill="#E3E98F"/>
+        <rect x="-15" y="-13.5" width="17" height="18" rx="6" fill="#52B052"/>
+        <rect x="-5" y="-9.4" width="20.6" height="7.4" rx="3.6" fill="#52B052"/>
+        <rect x="3.8" y="-10.6" width="2.6" height="1.5" rx=".6" fill="#52B052"/><rect x="7.4" y="-10.6" width="2.6" height="1.5" rx=".6" fill="#52B052"/>
+        <rect x="10.8" y="-11.4" width="4.8" height="3.2" rx="1.4" fill="#2E7D3E"/>
+        <rect x="-13.4" y="-7.5" width="11.4" height="10" rx="4" fill="#9BCD4C"/>
+        <path d="M-1-2.1l1.4 2 1.4-2zM2.4-2.1l1.4 2 1.4-2zM5.8-2.1l1.4 2 1.4-2zM9.2-2.1l1.4 2 1.4-2zM12.4-2.1l1.4 2 1.4-2z" fill="#FFFDF3" stroke="#B8AE8A" stroke-opacity="1" stroke-width=".3"/>
+        <circle cx="3" cy="-14.2" r="5" fill="#2E7D3E"/>
+        <circle cx="3.3" cy="-14.6" r="3.5" fill="#fff"/>
+        <circle cx="-6.2" cy="-12.6" r="6.9" fill="#52B052"/>
+        <circle cx="-5.9" cy="-13.2" r="4.9" fill="#fff"/>
+      </g>
+      <circle cx="12.4" cy="-9.9" r=".55" fill="#0F3019"/><circle cx="14.2" cy="-9.9" r=".55" fill="#0F3019"/>
+      <ellipse cx="-9.4" cy="-3.8" rx="2.2" ry="1.3" fill="#FF7F86" opacity=".6"/>
+      <path d="M-11.5-5.6Q-9.6-1.4-4-2" fill="none" stroke="#1D5A30" stroke-width=".8" stroke-linecap="round"/>
+      <circle cx="3.9" cy="-14.3" r="2" fill="#141414"/><circle cx="4.6" cy="-15.3" r=".7" fill="#fff"/>
+      <circle cx="-4.9" cy="-12.8" r="2.8" fill="#141414"/><circle cx="-4" cy="-14.2" r="1" fill="#fff"/><circle cx="-5.6" cy="-11.4" r=".45" fill="#fff"/>
+      <g fill="#4A3426">
+        <rect x="-10.4" y="-19.9" width="8" height="1.8" rx=".9" transform="rotate(-10 -6.4 -19)"/>
+        <rect x=".4" y="-19.6" width="5.6" height="1.5" rx=".75" transform="rotate(12 3.2 -18.9)"/>
+      </g>
+    </symbol>
+    <symbol id="crd-blocks" viewBox="0 0 132 38">
+      <g font-family="Plus Jakarta Sans, sans-serif" font-size="25" font-weight="800" text-anchor="middle" fill="#fff">
+        <rect x="0" y="0" width="38" height="38" rx="10" fill="#1E8FD6"/><text x="19" y="27">C</text>
+        <rect x="47" y="0" width="38" height="38" rx="10" fill="#12A56E"/><text x="66" y="27">R</text>
+        <rect x="94" y="0" width="38" height="38" rx="10" fill="#EF5350"/><text x="113" y="27">D</text>
+      </g>
+    </symbol>
+    <g id="i-bricks"><rect x="3" y="12" width="8" height="6" rx="1.2"/><rect x="13" y="12" width="8" height="6" rx="1.2"/><rect x="8" y="5" width="8" height="6" rx="1.2"/></g>
+    <g id="i-tablet"><rect x="4.5" y="2.5" width="15" height="19" rx="2.2"/><path d="M9.8 18.6h4.4"/></g>
+    <g id="i-kitchen"><path d="M4.5 9.2h15v6.6a4 4 0 0 1-4 4h-7a4 4 0 0 1-4-4z"/><path d="M4.5 11.8H2.8M19.5 11.8h1.7"/><path d="M9 6.4V4.2M15 6.4V4.2"/></g>
+    <g id="i-house"><path d="M3.6 10.4 12 3.8l8.4 6.6v9.5a.9.9 0 0 1-.9.9H4.5a.9.9 0 0 1-.9-.9z"/><path d="M9.6 20.8v-5.9h4.8v5.9"/></g>
+    <g id="i-flask"><path d="M9.4 3v6.3L4.6 18a2 2 0 0 0 1.7 3h11.4a2 2 0 0 0 1.7-3l-4.8-8.7V3"/><path d="M8.1 3h7.8M7.4 14.6h9.2"/></g>
+    <g id="i-games"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><circle cx="8.5" cy="8.5" r="1.3"/><circle cx="15.5" cy="15.5" r="1.3"/><circle cx="12" cy="12" r="1.3"/></g>
+    <g id="i-vehicle"><path d="M3 15l2-5.5A2 2 0 0 1 6.9 8h10.2a2 2 0 0 1 1.9 1.5L21 15v3.5h-3V17H6v1.5H3z"/><circle cx="7.5" cy="15" r="1.4"/><circle cx="16.5" cy="15" r="1.4"/></g>
+    <g id="i-outdoor"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17M3.5 12h17"/></g>
+    <g id="i-puzzle"><path d="M4 4h6.2a1.8 1.8 0 1 1 3.6 0H20v6.2a1.8 1.8 0 1 0 0 3.6V20h-6.2a1.8 1.8 0 1 0-3.6 0H4v-6.2a1.8 1.8 0 1 0 0-3.6z"/></g>
+    <g id="i-arts"><path d="M12 3.5c-4.7 0-8.5 3.6-8.5 8 0 3.1 2.4 4.6 4.6 4.6H10a1.7 1.7 0 0 1 1.3 2.8 1.6 1.6 0 0 0 1.2 2.6c4.5 0 8-4.1 8-9 0-4.4-3.8-9-8.5-9z"/><circle cx="8" cy="10" r="1.1"/><circle cx="12" cy="7.6" r="1.1"/><circle cx="16" cy="10.4" r="1.1"/></g>
+    <g id="i-learn"><path d="M12 7.2 3 4.2v13l9 3 9-3v-13z"/><path d="M12 7.2v13"/></g>
+    <g id="i-baby"><circle cx="12" cy="9" r="5.5"/><path d="M9.7 8.2h.01M14.3 8.2h.01M9.8 11.4a3.2 3.2 0 0 0 4.4 0"/><path d="M12 14.5v6"/></g>
+    <g id="i-truck"><path d="M2.5 6.5h11v11h-11z"/><path d="M13.5 10h4l3 3v4.5h-7z"/><circle cx="7" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/></g>
+    <g id="i-store"><path d="M3.5 9.5h17V20h-17z"/><path d="M3 9.5 5 4h14l2 5.5"/><path d="M9.5 20v-5.5h5V20"/></g>
+    <g id="i-megaphone"><path d="M3.5 10v4a1.5 1.5 0 0 0 1.5 1.5h2.5l7 4.5v-16l-7 4.5H5A1.5 1.5 0 0 0 3.5 10z"/><path d="M18 9a4 4 0 0 1 0 6"/></g>
+    <g id="i-check"><path d="m4.5 12.5 5 5 10-11"/></g>
+    <g id="i-pin"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></g>
+    <g id="i-phone"><path d="M6.2 3.5h3l1.6 4-2 1.4a12 12 0 0 0 5.8 5.8l1.4-2 4 1.6v3a1.7 1.7 0 0 1-1.9 1.7C9.9 18.3 5.7 14.1 4.5 5.4A1.7 1.7 0 0 1 6.2 3.5z"/></g>
+    <g id="i-mail"><rect x="2.8" y="5" width="18.4" height="14" rx="2.2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g>
+    <g id="i-globe"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2M12 3.4c4.5 4.7 4.5 12.5 0 17.2-4.5-4.7-4.5-12.5 0-17.2z"/></g>
+    <g id="i-tag"><path d="M11.2 3.2H4.2a1 1 0 0 0-1 1v7l9.4 9.4a1.6 1.6 0 0 0 2.2 0l6.8-6.8a1.6 1.6 0 0 0 0-2.2z"/><circle cx="7.6" cy="7.6" r="1.5"/></g>
+    <g id="i-box"><path d="M3.5 7.4 12 3.4l8.5 4v9.2L12 20.6l-8.5-4z"/><path d="M3.5 7.4 12 11.4l8.5-4M12 11.4v9.2"/></g>
+    <g id="i-shield"><path d="M12 3.2 5 6v5.5c0 4.2 2.9 7.6 7 9.3 4.1-1.7 7-5.1 7-9.3V6z"/><path d="m9 11.8 2.1 2.1 3.9-3.9"/></g>
+    <g id="i-heart"><path d="M12 20.4s-7.2-4.5-7.2-9.6a3.95 3.95 0 0 1 7.2-2.2 3.95 3.95 0 0 1 7.2 2.2c0 5.1-7.2 9.6-7.2 9.6z"/></g>
+  </defs>
+</svg>
+
+<a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="shell header-inner">
+    <!-- Mark only. What CRD stands for is spelled out in the contact section
+         and carried here by the aria-label, so the lockup stays clean. -->
+    <a class="brand" href="#top" aria-label="CRD, Compagnie de Représentation et de Distribution">
+      <svg class="brand-mark" viewBox="-5 -27 142 72" aria-hidden="true" focusable="false">
+        <!-- x/y place the crocodile symbol's box, not its origin: 50 = 66 - 16,
+             -22 = 0 - 22. That parks it over the R; the hop animation shifts it
+             to the C and the D. It comes first so the blocks paint over it when
+             it ducks. -->
+        <use class="mark-croc" href="#crd-croc" x="50" y="-22" width="32" height="30"/>
+        <use href="#crd-blocks" x="0" y="0" width="132" height="38"/>
+      </svg>
+    </a>
+
+    <nav class="site-nav" id="siteNav" aria-label="Main">
+      <a href="#overview" data-i18n="nav.overview">Overview</a>
+      <!-- One "Our offer" link, pointing at whichever offer section is showing. -->
+      <a href="#suppliers" data-for="brand" data-i18n="nav.offer">Our offer</a>
+      <a href="#retailers" data-for="retail" data-i18n="nav.offer">Our offer</a>
+      <a href="#about" data-i18n="nav.about">Company</a>
+      <a href="#categories" data-i18n="nav.categories">Range</a>
+      <a href="#brands" data-i18n="nav.portfolio">Portfolio</a>
+      <a class="btn btn-primary nav-cta" href="#contact" data-i18n="nav.cta">Contact us</a>
+    </nav>
+
+    <div class="header-tools">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" class="is-active">EN</button>
+        <button type="button" data-lang="fr">FR</button>
+        <button type="button" data-lang="ar" lang="ar">عربي</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+        <span class="sr-only" data-i18n="a11y.menu">Menu</span>
+        <span class="bar" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="overview">
+    <img class="hero-wave" src="assets/img/wave.png" alt="" aria-hidden="true">
+    <div class="shell hero-inner">
+      <div class="hero-copy">
+        <!-- The one choice on the page, already set. Switching rewrites the
+             page in place: see applyAudience() in main.js. -->
+        <div class="audience-picker">
+          <!-- The label sits outside the rounded track: only what can be
+               clicked goes inside it. -->
+          <span class="audience-label" id="audLabel" data-i18n="aud.label">You are</span>
+          <div class="audience-switch" role="group" aria-labelledby="audLabel">
+            <span class="audience-pill" aria-hidden="true"></span>
+            <button type="button" data-audience-set="brand" data-i18n="aud.brand">A brand</button>
+            <button type="button" data-audience-set="retail" data-i18n="aud.retail">A retailer</button>
+          </div>
+        </div>
+        <p class="eyebrow" data-i18n="hero.eyebrow">Games &amp; toys representation &amp; distribution · Tunisia</p>
+        <h1 data-i18n="hero.title">The great toy brands, in Tunisian children's hands</h1>
+        <p class="lede" data-i18n="hero.lede">Since 2004, CRD has represented European game and toy brands in Tunisia. From customs clearance to the shelf, in hypermarkets and specialist shops alike, we support and advise you at every step: you make the toys, we handle the rest.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="#contact" data-for="brand" data-set-enquiry="brand" data-i18n="hero.brandCta">Let's talk about your brand</a>
+          <a class="btn btn-ghost btn-lg" href="#brands" data-for="brand" data-i18n="hero.brandCta2">See our brands</a>
+          <a class="btn btn-primary btn-lg" href="#contact" data-for="retail" data-set-enquiry="retailer" data-i18n="hero.retailCta">Request the catalogue &amp; terms</a>
+          <a class="btn btn-ghost btn-lg" href="#categories" data-for="retail" data-i18n="hero.retailCta2">See the range</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <!-- The crocodile mascot that lives on the photo's top edge is drawn
+             and run by assets/js/croc.js, which adds its layers here. -->
+        <img src="assets/img/hero.jpg" alt="" loading="eager" width="800" height="500">
+        <div class="hero-badge">
+          <svg class="hero-badge-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>
+          <p class="hero-badge-txt" data-i18n="hero.badge"><strong>CRD</strong>, the gateway to the Tunisian and North African toy market</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STATS ══ -->
+  <section class="stats" aria-label="Key figures">
+    <div class="shell stats-grid">
+      <div class="stat"><span class="stat-num">2004</span><span class="stat-label" data-i18n="stats.founded">Founded in Tunis</span></div>
+      <div class="stat"><span class="stat-num">20<em>+</em></span><span class="stat-label" data-i18n="stats.years">Years representing European brands</span></div>
+      <div class="stat"><span class="stat-num">9<em>+</em></span><span class="stat-label" data-i18n="stats.brands">Leading brands represented</span></div>
+      <div class="stat"><span class="stat-num">5<em data-i18n="stats.minUnit"> min</em></span><span class="stat-label" data-i18n="stats.location">From Tunis-Carthage airport and the coastal motorway</span></div>
+    </div>
+  </section>
+
+  <!-- ══ FOR BRAND OWNERS ══ -->
+  <section id="suppliers" class="section section-dark" data-for="brand">
+    <div class="shell">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="sup.eyebrow">For brand owners &amp; manufacturers</p>
+        <h2 data-i18n="sup.title">Your brand in Tunisia, without setting up there</h2>
+        <p class="section-sub" data-i18n="sup.sub">Renowned European and international brands put their trust in us, and have stayed with us since our very beginnings.</p>
+      </header>
+
+      <div class="why-grid">
+        <article class="why-card">
+          <svg class="why-ico" viewBox="0 0 24 24"><use href="#i-truck"/></svg>
+          <h3 data-i18n="sup.c1.title">Logistics that actually move</h3>
+          <ul>
+            <li data-i18n="sup.c1.l1">A strategic base in ZI Charguia, five minutes from Tunis-Carthage airport and the motorway serving the whole country.</li>
+            <li data-i18n="sup.c1.l2">A warehouse run to current standards: organised storage, in-house order picking and quality control.</li>
+            <li data-i18n="sup.c1.l3">An agile structure: small and frequent deliveries handled in house, larger volumes through logistics partners of more than ten years.</li>
+          </ul>
+        </article>
+
+        <article class="why-card">
+          <svg class="why-ico" viewBox="0 0 24 24"><use href="#i-store"/></svg>
+          <h3 data-i18n="sup.c2.title">Shelf space everywhere that matters</h3>
+          <ul>
+            <li data-i18n="sup.c2.l1"><strong>Major chains:</strong> Carrefour, FNAC, Géant, Monoprix, Culturel, Al Kitab, etc.</li>
+            <li data-i18n="sup.c2.l2"><strong>Specialist toy shops:</strong> Abracadabra, Moncef Jouet, P’tit Ange, Ommi Sissi, Club Jouets Orchid, Baby Driim, Sweet Baby, etc.</li>
+            <li data-i18n="sup.c2.l3">National coverage, not just Greater Tunis.</li>
+          </ul>
+        </article>
+
+        <article class="why-card">
+          <svg class="why-ico" viewBox="0 0 24 24"><use href="#i-megaphone"/></svg>
+          <h3 data-i18n="sup.c3.title">Marketing we run, not outsource</h3>
+          <ul>
+            <li data-i18n="sup.c3.l1">Negotiated product exposure in hypermarket monthly magazines.</li>
+            <li data-i18n="sup.c3.l2">Seasonal campaigns built around the year-end holidays, Eid and back-to-school peaks.</li>
+            <li data-i18n="sup.c3.l3">A team that knows how Tunisian families actually buy toys.</li>
+          </ul>
+        </article>
+      </div>
+
+      <ul class="value-grid">
+        <li><svg class="v-ico" viewBox="0 0 24 24"><use href="#i-check"/></svg><p data-i18n="sup.v1">Direct access to the Tunisian market and an additional share of North Africa.</p></li>
+        <li><svg class="v-ico" viewBox="0 0 24 24"><use href="#i-check"/></svg><p data-i18n="sup.v2">A partner who has known this segment for more than twenty years.</p></li>
+        <li><svg class="v-ico" viewBox="0 0 24 24"><use href="#i-check"/></svg><p data-i18n="sup.v3">Exposure to growing demand for high-quality, educational toys among Tunisian families.</p></li>
+        <li><svg class="v-ico" viewBox="0 0 24 24"><use href="#i-check"/></svg><p data-i18n="sup.v4">One accountable partner for customs clearance, storage, delivery and sell-through.</p></li>
+        <li><svg class="v-ico" viewBox="0 0 24 24"><use href="#i-check"/></svg><p data-i18n="sup.v5">Visibility through our hypermarket relationships and seasonal campaigns.</p></li>
+      </ul>
+
+      <div class="next-steps">
+        <h3 data-i18n="sup.nextTitle">How we usually start</h3>
+        <p data-i18n="sup.nextBody">A meeting, in person or by video, to understand your brand and your ambitions for the region. From there we negotiate terms that fit both sides. We are happy to answer questions or share whatever information helps your decision.</p>
+        <a class="btn btn-primary btn-lg" href="#contact" data-set-enquiry="brand" data-i18n="sup.nextCta">Talk about representing your brand</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOR RETAILERS ══ -->
+  <section id="retailers" class="section section-tint" data-for="retail">
+    <div class="shell">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="ret.eyebrow">For retailers &amp; buyers</p>
+        <h2 data-i18n="ret.title">Fill your toy aisle from a single account</h2>
+        <p class="section-sub" data-i18n="ret.sub">From hypermarket chains to a single neighbourhood shop, we supply toy retailers across Tunisia, and we size the service to the shop.</p>
+      </header>
+
+      <div class="ret-grid">
+        <article class="ret-card">
+          <svg class="ret-ico" viewBox="0 0 24 24"><use href="#i-box"/></svg>
+          <h3 data-i18n="ret.c1.title">One supplier, the whole aisle</h3>
+          <p data-i18n="ret.c1.body">Leading toy brands covering the whole aisle: construction, puzzles, board games, role-play, garden play, baby and more. One order, one delivery, one invoice, instead of chasing a dozen suppliers.</p>
+        </article>
+
+        <article class="ret-card">
+          <svg class="ret-ico" viewBox="0 0 24 24"><use href="#i-shield"/></svg>
+          <h3 data-i18n="ret.c2.title">Authentic, officially represented</h3>
+          <p data-i18n="ret.c2.body">We are the appointed representative of the brands we carry, sourcing directly from the manufacturers. What reaches your shelf is genuine product with the packaging, safety standards and guarantees customers expect.</p>
+        </article>
+
+        <article class="ret-card">
+          <svg class="ret-ico" viewBox="0 0 24 24"><use href="#i-truck"/></svg>
+          <h3 data-i18n="ret.c3.title">Delivery sized to your shop</h3>
+          <p data-i18n="ret.c3.body">We handle small and frequent orders in house, so you do not have to over-stock to get a delivery. Larger volumes go through logistics partners we have used for over a decade. We reach the whole country, not just Greater Tunis.</p>
+        </article>
+
+        <article class="ret-card">
+          <svg class="ret-ico" viewBox="0 0 24 24"><use href="#i-heart"/></svg>
+          <h3 data-i18n="ret.c4.title">Support beyond the invoice</h3>
+          <p data-i18n="ret.c4.body">Opening a new store or reworking your toy section? We advise on assortment and procurement, help you plan around the year-end holidays, Eid and back-to-school, and coach your team on selling the range. Our clients have grown with us for twenty years.</p>
+        </article>
+      </div>
+
+      <div class="next-steps next-steps-light">
+        <h3 data-i18n="ret.nextTitle">Open an account with us</h3>
+        <p data-i18n="ret.nextBody">Tell us what kind of shop you run and which categories matter to you. We will come back with the range, terms and a delivery schedule that fits your size, whether you are a national chain or a single store.</p>
+        <a class="btn btn-primary btn-lg" href="#contact" data-set-enquiry="retailer" data-i18n="ret.nextCta">Request our range &amp; terms</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+  <section id="about" class="section section-tint">
+    <div class="shell">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="about.eyebrow">The company</p>
+        <h2 data-i18n="about.title">Built by a specialist, not a generalist</h2>
+      </header>
+
+      <div class="about-grid">
+        <figure class="founder-card">
+          <img src="assets/img/founder.jpg" alt="Mohamed Hachicha" data-i18n-alt="about.founderName" width="720" height="720" loading="lazy">
+          <figcaption>
+            <strong data-i18n="about.founderName">Mohamed Hachicha</strong>
+            <span data-i18n="about.founderRole">Founder &amp; Managing Director</span>
+          </figcaption>
+        </figure>
+
+        <div class="about-copy">
+          <p data-i18n="about.p1">CRD's story begins in 2004, carried by Mohamed Hachicha and his passion for the world of toys. After a Master's in Game and Toy Sciences at Paris 11 University, he built his expertise at the heart of this industry.</p>
+          <p data-i18n="about.p2">With more than 35 years of experience, Mohamed Hachicha is today an expert and unifying figure in the sector, forging lasting ties between brands, distributors and partners, and helping the toy ecosystem flourish.</p>
+
+          <blockquote class="mission">
+            <p data-i18n="about.mission">Our mission is to democratise high-quality, educational games and toys for Tunisian youth, empowering parents to support their children's well-being and development.</p>
+          </blockquote>
+
+          <p class="muted" data-i18n="about.p3">We deliberately weigh the social, economic and environmental impact of what we distribute, and favour products that promote educational learning.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ CATEGORIES ══ -->
+  <section id="categories" class="section">
+    <div class="shell">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="categories.eyebrow">The range</p>
+        <h2 data-i18n="categories.title">From early learning to science kits</h2>
+        <p class="section-sub" data-i18n="categories.sub">Because we cover the whole aisle, your brand lands in Tunisia with a single distributor, without fragmenting its distribution.</p>
+      </header>
+
+      <!-- Every category here is covered by at least one of the brands in
+           the portfolio below. Adding one means adding the brand that supplies it. -->
+      <ul class="cat-grid">
+        <li class="cat c1"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-bricks"/></svg><span data-i18n="cat.building">Construction toys</span></li>
+        <li class="cat c2"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-puzzle"/></svg><span data-i18n="cat.puzzles">Jigsaws &amp; puzzles</span></li>
+        <li class="cat c3"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-games"/></svg><span data-i18n="cat.games">Board &amp; family games</span></li>
+        <li class="cat c4"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-learn"/></svg><span data-i18n="cat.educational">Educational games</span></li>
+        <li class="cat c5"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-tablet"/></svg><span data-i18n="cat.electronic">Electronic &amp; interactive toys</span></li>
+        <li class="cat c6"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-baby"/></svg><span data-i18n="cat.baby">Baby &amp; early learning</span></li>
+        <li class="cat c1"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-kitchen"/></svg><span data-i18n="cat.roleplay">Role-play: kitchens &amp; workbenches</span></li>
+        <li class="cat c2"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-house"/></svg><span data-i18n="cat.garden">Playhouses &amp; garden play</span></li>
+        <li class="cat c3"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-vehicle"/></svg><span data-i18n="cat.rideons">Ride-ons &amp; children's vehicles</span></li>
+        <li class="cat c4"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-outdoor"/></svg><span data-i18n="cat.balls">Play balls &amp; beach toys</span></li>
+        <li class="cat c5"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-arts"/></svg><span data-i18n="cat.creative">Mosaics &amp; creative play</span></li>
+        <li class="cat c6"><svg class="cat-ico" viewBox="0 0 24 24"><use href="#i-flask"/></svg><span data-i18n="cat.science">Science &amp; discovery</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ BRANDS ══ -->
+  <section id="brands" class="section">
+    <div class="shell">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="brands.eyebrow">Our portfolio</p>
+        <h2 data-i18n="brands.title">The brands we carry</h2>
+        <p class="section-sub" data-i18n="brands.sub">Names Tunisian parents already recognise, and ask for by name.</p>
+      </header>
+
+      <!-- Each tile links to the brand's own site. Flags show the HQ country,
+           plus the EU flag where the country is a member. Hovering (or
+           keyboard-focusing) a tile reveals the preview panel; on touch
+           devices, where there is no hover, the caption shows instead. -->
+      <div class="brand-slider">
+      <div class="brand-carousel" id="brandViewport">
+      <ul class="logo-wall" id="brandTrack">
+        <li class="brand-tile">
+          <a class="brand-link" href="https://www.lego.com" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/lego.svg" alt="LEGO" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/dk.svg" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.lego.loc">Denmark</span> · <span data-i18n="bd.lego.cat">Construction toys</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">LEGO</strong>
+              <span class="bc-loc" data-i18n="bd.lego.loc">Denmark</span>
+              <span class="bc-cat" data-i18n="bd.lego.cat">Construction toys</span>
+              <span class="bc-desc" data-i18n="bd.lego.desc">The world's best-known construction system, with interlocking bricks, licensed themes and Duplo for younger builders.</span>
+              <span class="bc-go">lego.com <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://www.vtech-jouets.com" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/vtech.svg" alt="vtech" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/hk.svg" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.vtech.loc">Hong Kong</span> · <span data-i18n="bd.vtech.cat">Electronic learning toys</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">vtech</strong>
+              <span class="bc-loc" data-i18n="bd.vtech.loc">Hong Kong</span>
+              <span class="bc-cat" data-i18n="bd.vtech.cat">Electronic learning toys</span>
+              <span class="bc-desc" data-i18n="bd.vtech.desc">The reference in electronic learning toys: interactive tablets, talking activity tables and baby monitors, since 1976.</span>
+              <span class="bc-go">vtech-jouets.com <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://www.smoby.com" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/smoby.svg" alt="Smoby" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/fr.svg" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.smoby.loc">France</span> · <span data-i18n="bd.smoby.cat">Playhouses &amp; garden</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">Smoby</strong>
+              <span class="bc-loc" data-i18n="bd.smoby.loc">France</span>
+              <span class="bc-cat" data-i18n="bd.smoby.cat">Playhouses &amp; garden</span>
+              <span class="bc-desc" data-i18n="bd.smoby.desc">France's largest toy manufacturer: playhouses, slides, play kitchens and ride-ons for gardens, courtyards and playrooms.</span>
+              <span class="bc-go">smoby.com <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://corporate.hasbro.com" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/hasbro.svg" alt="Hasbro" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/us.svg" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.hasbro.loc">United States</span> · <span data-i18n="bd.hasbro.cat">Board games &amp; licensed toys</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">Hasbro</strong>
+              <span class="bc-loc" data-i18n="bd.hasbro.loc">United States</span>
+              <span class="bc-cat" data-i18n="bd.hasbro.cat">Board games &amp; licensed toys</span>
+              <span class="bc-desc" data-i18n="bd.hasbro.desc">The American games giant since 1923: Monopoly, Play-Doh, Nerf, Cluedo and figures from the biggest film and TV licences.</span>
+              <span class="bc-go">hasbro.com <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://ecoiffier.fr" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/ecoiffier.png" alt="écoiffier" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/fr.svg" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.ecoiffier.loc">France</span> · <span data-i18n="bd.ecoiffier.cat">Role-play &amp; outdoor</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">écoiffier</strong>
+              <span class="bc-loc" data-i18n="bd.ecoiffier.loc">France</span>
+              <span class="bc-cat" data-i18n="bd.ecoiffier.cat">Role-play &amp; outdoor</span>
+              <span class="bc-desc" data-i18n="bd.ecoiffier.desc">Made in France since 1945: play kitchens, tool benches, sand and garden sets, all built to survive years of real play.</span>
+              <span class="bc-go">ecoiffier.fr <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://www.ravensburger.com" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/ravensburger.svg" alt="Ravensburger" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/de.svg" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.ravensburger.loc">Germany</span> · <span data-i18n="bd.ravensburger.cat">Puzzles &amp; board games</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">Ravensburger</strong>
+              <span class="bc-loc" data-i18n="bd.ravensburger.loc">Germany</span>
+              <span class="bc-cat" data-i18n="bd.ravensburger.cat">Puzzles &amp; board games</span>
+              <span class="bc-desc" data-i18n="bd.ravensburger.desc">The blue triangle since 1883: the world's leading jigsaw maker, plus board games and much-loved children's classics.</span>
+              <span class="bc-go">ravensburger.com <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://www.liscianigiochi.com" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/lisciani.png" alt="Lisciani Giochi" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/it.svg" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.lisciani.loc">Italy</span> · <span data-i18n="bd.lisciani.cat">Educational games</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">Lisciani Giochi</strong>
+              <span class="bc-loc" data-i18n="bd.lisciani.loc">Italy</span>
+              <span class="bc-cat" data-i18n="bd.lisciani.cat">Educational games</span>
+              <span class="bc-desc" data-i18n="bd.lisciani.desc">An Italian educational publisher turned toymaker: Montessori ranges, science kits and the Carotina early-learning line.</span>
+              <span class="bc-go">liscianigiochi.com <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://www.educaborras.com" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/educa.png" alt="EDUCA" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/es.png" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.educa.loc">Spain</span> · <span data-i18n="bd.educa.cat">Puzzles &amp; family games</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">EDUCA</strong>
+              <span class="bc-loc" data-i18n="bd.educa.loc">Spain</span>
+              <span class="bc-cat" data-i18n="bd.educa.cat">Puzzles &amp; family games</span>
+              <span class="bc-desc" data-i18n="bd.educa.desc">Catalan puzzle house founded in 1967: jigsaws for adults and children, family board games and magic sets for all ages.</span>
+              <span class="bc-go">educaborras.com <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://www.unicetoys.com" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/unice.png" alt="UNICE" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/es.png" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.unice.loc">Spain</span> · <span data-i18n="bd.unice.cat">Play balls &amp; beach</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">UNICE</strong>
+              <span class="bc-loc" data-i18n="bd.unice.loc">Spain</span>
+              <span class="bc-cat" data-i18n="bd.unice.cat">Play balls &amp; beach</span>
+              <span class="bc-desc" data-i18n="bd.unice.desc">Spain's play-ball specialist: printed and licensed balls, beach sets and moulded outdoor toys that turn over fast.</span>
+              <span class="bc-go">unicetoys.com <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://www.triganojardin.fr" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/trigano.svg" alt="Trigano" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/fr.svg" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.trigano.loc">France</span> · <span data-i18n="bd.trigano.cat">Outdoor play &amp; garden</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">Trigano</strong>
+              <span class="bc-loc" data-i18n="bd.trigano.loc">France</span>
+              <span class="bc-cat" data-i18n="bd.trigano.cat">Outdoor play &amp; garden</span>
+              <span class="bc-desc" data-i18n="bd.trigano.desc">France's garden play specialist: swing sets, slides, climbing frames, trampolines and play areas built for the outdoors.</span>
+              <span class="bc-go">triganojardin.fr <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://www.quercettistore.com" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/quercetti.png" alt="Quercetti" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/it.svg" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.quercetti.loc">Italy</span> · <span data-i18n="bd.quercetti.cat">Mosaics &amp; construction</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">Quercetti</strong>
+              <span class="bc-loc" data-i18n="bd.quercetti.loc">Italy</span>
+              <span class="bc-cat" data-i18n="bd.quercetti.cat">Mosaics &amp; construction</span>
+              <span class="bc-desc" data-i18n="bd.quercetti.desc">Made in Turin for over 70 years: Fantacolor peg mosaics, marble runs and construction sets that build fine motor skills.</span>
+              <span class="bc-go">quercettistore.com <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="brand-tile">
+          <a class="brand-link" href="https://jumboplay.com/fr-fr/pages/dujardin" target="_blank" rel="noopener noreferrer">
+            <img class="brand-logo" src="assets/brands/dujardin.png" alt="Dujardin" loading="lazy">
+            <span class="brand-flags" aria-hidden="true">
+              <img src="assets/flags/fr.svg" alt="" width="20" height="14">
+            </span>
+            <span class="brand-caption"><span data-i18n="bd.dujardin.loc">France</span> · <span data-i18n="bd.dujardin.cat">Family &amp; card games</span></span>
+            <span class="brand-card">
+              <strong class="bc-name">Dujardin</strong>
+              <span class="bc-loc" data-i18n="bd.dujardin.loc">France</span>
+              <span class="bc-cat" data-i18n="bd.dujardin.cat">Family &amp; card games</span>
+              <span class="bc-desc" data-i18n="bd.dujardin.desc">The French publisher of family classics: Mille Bornes since 1954, plus Cochon qui rit and Chrono Bomb' for game nights.</span>
+              <span class="bc-go">jumboplay.com/dujardin <span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </li>
+      </ul>
+      </div>
+      </div>
+
+      <p class="trademark-note" data-i18n="brands.note">All trademarks and logos are the property of their respective owners and are shown to identify the brands CRD distributes in Tunisia.</p>
+    </div>
+  </section>
+
+  <!--
+    ══ TESTIMONIALS ══
+    TODO: confirm written consent from both individuals before publishing.
+    These quotes were cleared for a private PDF sent to a single recipient,
+    which is not the same as permission to publish them on a public website.
+    Once Mohamed has sign-off, delete these comment markers and the section goes live.
+
+  <section id="testimonials" class="section section-tint">
+    <div class="shell">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="quotes.eyebrow">In their words</p>
+        <h2 data-i18n="quotes.title">What our partners say</h2>
+      </header>
+      <div class="quote-grid">
+        <blockquote class="quote">
+          <p data-i18n="quotes.q1">Working with CRD is a game-changer for our brand.</p>
+          <footer><strong>Hani Orfali</strong><span data-i18n="quotes.a1">Key Account Manager, LEGO</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p data-i18n="quotes.q2">CRD's professionalism and dedication have made them our preferred distributor in North Africa.</p>
+          <footer><strong>Jacques Ecoiffier</strong><span data-i18n="quotes.a2">CEO, ECOIFFIER</span></footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- ══ CONTACT ══ -->
+  <section id="contact" class="section section-dark">
+    <div class="shell">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="contact.eyebrow">Get in touch</p>
+        <h2 data-i18n="contact.title">Let's talk about your brand</h2>
+      </header>
+
+      <div class="contact-grid">
+        <form class="contact-form" id="contactForm" novalidate>
+          <!-- Paste the access key from web3forms.com here. See README.md -->
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY_HERE">
+          <input type="hidden" name="subject" value="New enquiry from the CRD website">
+          <input type="hidden" name="from_name" value="CRD Website">
+          <!-- honeypot -->
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+          <p class="field">
+            <label for="f-type" data-i18n="form.iam">I am…</label>
+            <select id="f-type" name="enquiry_type" required>
+              <option value="brand" data-i18n="form.iamBrand">A brand owner or manufacturer</option>
+              <option value="retailer" data-i18n="form.iamRetailer">A retailer or buyer</option>
+              <option value="other" data-i18n="form.iamOther">Something else</option>
+            </select>
+          </p>
+
+          <div class="field-row">
+            <p class="field">
+              <label for="f-name" data-i18n="form.name">Your name</label>
+              <input id="f-name" name="name" type="text" required autocomplete="name">
+            </p>
+            <p class="field">
+              <label for="f-company" data-i18n="form.company">Company</label>
+              <input id="f-company" name="company" type="text" required autocomplete="organization">
+            </p>
+          </div>
+
+          <div class="field-row">
+            <p class="field" id="wrap-brand">
+              <label for="f-brand" data-i18n="form.brand">Brand</label>
+              <input id="f-brand" name="brand" type="text">
+            </p>
+            <p class="field" id="wrap-country">
+              <label for="f-country" data-i18n="form.country">Country</label>
+              <input id="f-country" name="country" type="text" autocomplete="country-name">
+            </p>
+          </div>
+
+          <div class="field-row">
+            <p class="field">
+              <label for="f-email" data-i18n="form.email">Email</label>
+              <input id="f-email" name="email" type="email" required autocomplete="email">
+            </p>
+            <p class="field">
+              <label for="f-phone" data-i18n="form.phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+            </p>
+          </div>
+
+          <p class="field">
+            <label for="f-message" data-i18n="form.message">How can we help?</label>
+            <textarea id="f-message" name="message" rows="5" required data-i18n-placeholder="form.messagePh" placeholder="Tell us about your brand and what you are looking for in the Tunisian market."></textarea>
+          </p>
+
+          <button class="btn btn-primary btn-lg" type="submit" id="submitBtn" data-i18n="form.submit">Send enquiry</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside class="contact-details">
+          <p class="contact-legal" data-i18n="contact.legal">Compagnie de Représentation et de Distribution (CRD)</p>
+
+          <ul class="contact-list">
+            <li>
+              <svg class="c-ico" viewBox="0 0 24 24"><use href="#i-pin"/></svg>
+              <span dir="ltr">57 rue 8603, ZI Charguia 1<br>2035 Tunis, <span data-i18n="contact.country">Tunisia</span></span>
+            </li>
+            <li>
+              <svg class="c-ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>
+              <span>
+                <a href="tel:+21621357032" dir="ltr">+216 21 357 032</a> <em data-i18n="contact.mobile">(mobile)</em>
+              </span>
+            </li>
+            <li>
+              <svg class="c-ico" viewBox="0 0 24 24"><use href="#i-mail"/></svg>
+              <span>
+                <a href="mailto:hachicha.med@crd.tn" dir="ltr">hachicha.med@crd.tn</a>
+              </span>
+            </li>
+            <li>
+              <svg class="c-ico" viewBox="0 0 24 24"><use href="#i-globe"/></svg>
+              <span><strong data-i18n="about.founderName">Mohamed Hachicha</strong><br><span data-i18n="about.founderRole">Founder &amp; Managing Director</span></span>
+            </li>
+          </ul>
+
+          <!-- No hl= parameter on purpose: Google then labels the map in the
+               visitor's own browser language. -->
+          <div class="map-wrap">
+            <iframe
+              title="CRD, ZI Charguia 1, Tunis"
+              src="https://maps.google.com/maps?q=36.835063,10.209620&amp;z=16&amp;output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+          <!-- q=lat,lng(Label) drops a *named* pin. A bare coordinate search
+               opens an empty place card, because CRD has no Google listing. -->
+          <p class="map-links">
+            <a href="https://maps.google.com/?q=36.835063,10.209620%28CRD%29"
+               target="_blank" rel="noopener noreferrer" data-i18n="contact.mapLink">Open in Google Maps</a>
+            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=36.835063%2C10.209620"
+               target="_blank" rel="noopener noreferrer" data-i18n="contact.directions">Directions</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <p class="footer-legal">
+      <span class="brand brand-footer" aria-label="CRD, Compagnie de Représentation et de Distribution">
+      <svg class="brand-mark" viewBox="-5 -27 142 72" aria-hidden="true" focusable="false">
+        <!-- x/y place the crocodile symbol's box, not its origin: 50 = 66 - 16,
+             -22 = 0 - 22. That parks it over the R; the hop animation shifts it
+             to the C and the D. It comes first so the blocks paint over it when
+             it ducks. -->
+        <use class="mark-croc" href="#crd-croc" x="50" y="-22" width="32" height="30"/>
+        <use href="#crd-blocks" x="0" y="0" width="132" height="38"/>
+      </svg>
+      </span>
+      <span class="footer-address" dir="ltr">57 rue 8603, ZI Charguia 1, 2035 Tunis, <span data-i18n="contact.country">Tunisia</span></span>
+    </p>
+    <p class="footer-copy">
+      <span id="year">2026</span> CRD. <span data-i18n="footer.rights">All rights reserved.</span>
+      <a href="#top" data-i18n="footer.top">Back to top ↑</a>
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/croc.js"></script>
+</body>
+</html>

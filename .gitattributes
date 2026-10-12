@@ -1,0 +1,4 @@
+# Keep Unix line endings, as on the OVH server, whatever the editing machine.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
